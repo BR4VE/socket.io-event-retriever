@@ -9,8 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.7.2",
     "cron": "^1.8.2",
     "express": "^4.17.1",
-    "socket.io": "^2.3.0"
+    "redis": "^3.0.2",
+    "socket.io": "^2.3.0",
+    "uniqid": "^5.2.0"
   }
 }
