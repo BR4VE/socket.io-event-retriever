@@ -9,6 +9,8 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 const ioEventRetriever = new EventRetrieverIO(io);
+// set redis as event store
+ioEventRetriever.setEventStore("redis", { host: "localhost", port: 6379 });
 
 io.on("connection", (socket) => {
   // put method to the top of the scope
