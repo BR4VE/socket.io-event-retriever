@@ -102,6 +102,8 @@ Currently socket.io-event-retirever only supports Redis but in the future it wil
 const ioEventRetriever = new EventRetrieverIO(io);
 // set redis as event store
 ioEventRetriever.setEventStore("redis", { host: "localhost", port: 6379 });
+// set to default event store
+ioEventRetriever.setEventStore("base");
 ```
 
 # Todos
