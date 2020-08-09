@@ -17,7 +17,7 @@ io.on("connection", (socket) => {
   socket.join("some_room");
 
   socket.on("emitted_event", (data) => {
-    io.to("some_room").emit("emitted_event");
+    io.to("some_room").emit("emitted_event", data);
   });
 });
 
