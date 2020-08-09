@@ -1,23 +1,25 @@
 const express = require("express");
 const http = require("http");
 const socketIO = require("socket.io");
-const { eventRetrieverIO } = require("../lib");
+const { EventRetrieverIO } = require("../lib");
 
 const app = express();
 
 const server = http.createServer(app);
 const io = socketIO(server);
 
-const { handleSocketRetrieval } = eventRetrieverIO(io);
+const ioEventRetriever = new EventRetrieverIO(io);
+// set redis as event store
+ioEventRetriever.setEventStore("redis", { host: "localhost", port: 6379 });
 
 io.on("connection", (socket) => {
-  // handleSocketRetrival should be on top of the connection event
-  handleSocketRetrieval(socket);
+  // put method to the top of the scope
+  ioEventRetriever.setEventRetriever(socket);
 
   socket.join("some_room");
 
   socket.on("emitted_event", (data) => {
-    io.to("some_room").emit("emitted_event");
+    io.to("some_room").emit("emitted_event", data);
   });
 });
 
