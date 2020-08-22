@@ -45,7 +45,7 @@ const ioEventRetriever = new EventRetrieverIO(io);
 
 io.on("connection", (socket) => {
   // put method to the top of the scope
-  ioEventRetriever.setEventRetriever(socket);
+  ioEventRetriever.setSocket(socket);
 
   socket.join("some_room");
   socket.on("emitted_event", (data) => {
@@ -68,7 +68,7 @@ const socket = io("some.url");
 // call eventRetriverClient with Socket
 const socketEventRetriever = new EventRetrieverClient(socket);
 // init retriever
-socketEventRetriever.setEventRetriever();
+socketEventRetriever.init();
 ```
 
 ## API

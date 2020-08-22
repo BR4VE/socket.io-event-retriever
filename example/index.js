@@ -14,7 +14,7 @@ ioEventRetriever.setEventStore("redis", { host: "localhost", port: 6379 });
 
 io.on("connection", (socket) => {
   // put method to the top of the scope
-  ioEventRetriever.setEventRetriever(socket);
+  ioEventRetriever.setSocket(socket);
 
   socket.join("some_room");
 
